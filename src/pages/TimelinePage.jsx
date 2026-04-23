@@ -1,3 +1,5 @@
+import { Container, Card } from "react-bootstrap";
+
 function TimelinePage() {
   const oneMonthBefore = [
     "Create a moving budget and start tracking expenses",
@@ -55,93 +57,83 @@ function TimelinePage() {
   ];
 
   return (
-    <div style={{ padding: "60px 20px" }}>
-      <h1
-        style={{
-          textAlign: "center",
-          fontSize: "60px",
-          marginBottom: "20px"
-        }}
-      >
-        Moving Timeline
-      </h1>
+    <Container className="py-5">
+      <div className="text-center mb-5">
+        <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
+          Moving Timeline
+        </h1>
 
-      <p
-        style={{
-          textAlign: "center",
-          fontSize: "22px",
-          color: "#666",
-          maxWidth: "850px",
-          margin: "0 auto 50px auto",
-          lineHeight: "1.6"
-        }}
-      >
-        A plan for everything you need to do before, during, and after your move.
-      </p>
+        <p
+          style={{
+            fontSize: "22px",
+            color: "#666",
+            maxWidth: "850px",
+            margin: "0 auto",
+            lineHeight: "1.6"
+          }}
+        >
+          A practical week-by-week plan for everything you need to do before,
+          during, and after your move.
+        </p>
+      </div>
 
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={cardStyle}>
-          <h2 style={sectionTitleStyle}>1 Month Before Move</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>1 Month Before Move</h2>
           <ul style={listStyle}>
             {oneMonthBefore.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Card.Body>
+      </Card>
 
-        <div style={cardStyle}>
-          <h2 style={sectionTitleStyle}>2 Weeks Before Move</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>2 Weeks Before Move</h2>
           <ul style={listStyle}>
             {twoWeeksBefore.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Card.Body>
+      </Card>
 
-        <div style={cardStyle}>
-          <h2 style={sectionTitleStyle}>1 Week Before Move</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>1 Week Before Move</h2>
           <ul style={listStyle}>
             {oneWeekBefore.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Card.Body>
+      </Card>
 
-        <div style={cardStyle}>
-          <h2 style={sectionTitleStyle}>Moving Day</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>Moving Day</h2>
           <ul style={listStyle}>
             {movingDay.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Card.Body>
+      </Card>
 
-        <div style={cardStyle}>
-          <h2 style={sectionTitleStyle}>After Move-In</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>After Move-In</h2>
           <ul style={listStyle}>
             {afterMoveIn.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
-      </div>
-    </div>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
-
-const cardStyle = {
-  backgroundColor: "white",
-  border: "1px solid #ddd",
-  borderRadius: "16px",
-  padding: "30px",
-  marginBottom: "30px",
-  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)"
-};
-
-const sectionTitleStyle = {
-  fontSize: "32px",
-  marginBottom: "20px"
-};
 
 const listStyle = {
   fontSize: "20px",

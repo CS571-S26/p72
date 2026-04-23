@@ -19,20 +19,21 @@ function HomePage() {
         you can organize everything you need for your move.
       </p>
 
-      <Link to="/planner">
-        <button style={{
+      <Link
+        to="/planner"
+        style={{
+          display: "inline-block",
           backgroundColor: "#d97745",
           color: "white",
-          border: "none",
+          textDecoration: "none",
           padding: "22px 36px",
           borderRadius: "12px",
-          cursor: "pointer",
           marginBottom: "60px",
           fontSize: "22px",
           fontWeight: "500"
-        }}>
-          Start Planning
-        </button>
+        }}
+      >
+        Start Planning
       </Link>
 
       <h2 style={{ fontSize: "30px", marginBottom: "22px" }}>

@@ -1,3 +1,5 @@
+import { Container, Card } from "react-bootstrap";
+
 function EssentialsPage() {
   const kitchenItems = [
     "Pots and pans set",
@@ -54,84 +56,72 @@ function EssentialsPage() {
   ];
 
   return (
-    <div style={{ padding: "60px 20px" }}>
-      <h1
-        style={{
-          textAlign: "center",
-          fontSize: "60px",
-          marginBottom: "20px"
-        }}
-      >
-        Apartment Essentials
-      </h1>
+    <Container className="py-5">
+      <div className="text-center mb-5">
+        <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
+          Apartment Essentials
+        </h1>
 
-      <p
-        style={{
-          textAlign: "center",
-          fontSize: "22px",
-          color: "#666",
-          maxWidth: "850px",
-          margin: "0 auto 50px auto",
-          lineHeight: "1.6"
-        }}
-      >
-        Everything you need to set up your new home.
-      </p>
+        <p
+          style={{
+            fontSize: "22px",
+            color: "#666",
+            maxWidth: "850px",
+            margin: "0 auto",
+            lineHeight: "1.6"
+          }}
+        >
+          Everything you need to set up your new home — organized by room so
+          nothing gets forgotten.
+        </p>
+      </div>
 
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={cardStyle}>
-          <h2 style={roomTitleStyle}>Kitchen</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>Kitchen</h2>
           <ul style={listStyle}>
             {kitchenItems.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Card.Body>
+      </Card>
 
-        <div style={cardStyle}>
-          <h2 style={roomTitleStyle}>Bedroom</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>Bedroom</h2>
           <ul style={listStyle}>
             {bedroomItems.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Card.Body>
+      </Card>
 
-        <div style={cardStyle}>
-          <h2 style={roomTitleStyle}>Bathroom</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>Bathroom</h2>
           <ul style={listStyle}>
             {bathroomItems.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
+        </Card.Body>
+      </Card>
 
-        <div style={cardStyle}>
-          <h2 style={roomTitleStyle}>Living Room</h2>
+      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
+        <Card.Body style={{ padding: "30px" }}>
+          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>Living Room</h2>
           <ul style={listStyle}>
             {livingRoomItems.map((item) => (
               <li key={item} style={listItemStyle}>{item}</li>
             ))}
           </ul>
-        </div>
-      </div>
-    </div>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
-
-const cardStyle = {
-  backgroundColor: "white",
-  border: "1px solid #ddd",
-  borderRadius: "16px",
-  padding: "30px",
-  marginBottom: "30px",
-  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)"
-};
-
-const roomTitleStyle = {
-  fontSize: "32px",
-  marginBottom: "20px"
-};
 
 const listStyle = {
   fontSize: "20px",
