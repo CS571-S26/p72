@@ -22,7 +22,7 @@ function MistakesPage() {
       description:
         "Throwing things into random boxes without labels makes unpacking much harder and wastes time.",
       tip:
-        "Label every box with both the room and what is inside."
+        "Label every box with the room and what is inside."
     },
     {
       title: "Waiting Too Long to Start",
@@ -46,7 +46,7 @@ function MistakesPage() {
         "Set up your utilities before move-in day so everything is ready when you arrive."
     },
     {
-      title: "Not Documenting the Space",
+      title: "Not Documenting Existing Damage",
       description:
         "If you do not take pictures of any damage before moving in, you may have trouble proving it was already there.",
       tip:
@@ -64,78 +64,130 @@ function MistakesPage() {
   return (
     <Container className="py-5">
       <div className="text-center mb-5">
-        <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
-          Common Moving Mistakes
-        </h1>
+        <h1 className="page-title">Common Moving Mistakes</h1>
 
-        <p
-          style={{
-            fontSize: "22px",
-            color: "#666",
-            maxWidth: "800px",
-            margin: "0 auto",
-            lineHeight: "1.6"
-          }}
-        >
+        <p className="page-subtitle">
           Avoid the most common mistakes people make when moving so you can save
           time, money, and stress.
         </p>
       </div>
 
-      {mistakes.map((mistake, index) => (
-        <Card
-          key={mistake.title}
-          className="mb-4"
-          style={{
-            borderRadius: "16px",
-            border: "1px solid #ddd"
-          }}
-        >
-          <Card.Body style={{ padding: "30px" }}>
-            <h2 style={{ fontSize: "30px", marginBottom: "15px" }}>
-              {index + 1}. {mistake.title}
-            </h2>
+      <div style={{ maxWidth: "980px", margin: "0 auto" }}>
+        {mistakes.map((mistake, index) => (
+          <Card key={mistake.title} className="mb-4" style={mistakeCardStyle}>
+            <Card.Body style={{ padding: "34px" }}>
+              <div style={cardContentStyle}>
+                <div style={mistakeIconStyle} aria-hidden="true">
+                  <XIcon />
+                </div>
 
-            <p
-              style={{
-                fontSize: "18px",
-                color: "#444",
-                lineHeight: "1.7",
-                marginBottom: "18px"
-              }}
-            >
-              {mistake.description}
-            </p>
+                <div style={{ flex: 1 }}>
+                  <h2 style={mistakeTitleStyle}>
+                    {index + 1}. {mistake.title}
+                  </h2>
 
-            <p
-              style={{
-                fontSize: "18px",
-                lineHeight: "1.7",
-                marginBottom: "0"
-              }}
-            >
-              <strong>Tip:</strong> {mistake.tip}
-            </p>
-          </Card.Body>
-        </Card>
-      ))}
+                  <p style={descriptionStyle}>{mistake.description}</p>
+
+                  <div style={tipBoxStyle}>
+                    <p style={tipTextStyle}>
+                      <strong style={{ color: "#3d9b6d" }}>Tip:</strong>{" "}
+                      {mistake.tip}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
 
       <div className="text-center mt-5">
         <Button
           as={Link}
           to="/planner"
+          onClick={() => window.scrollTo(0, 0)}
           style={{
             backgroundColor: "#d97745",
             border: "none",
             borderRadius: "12px",
             padding: "14px 24px",
-            fontSize: "18px"
+            fontSize: "18px",
+            fontWeight: "600"
           }}
         >
           Go to Planner
         </Button>
       </div>
     </Container>
+  );
+}
+
+const mistakeCardStyle = {
+  borderRadius: "18px",
+  border: "1px solid #ddd"
+};
+
+const cardContentStyle = {
+  display: "flex",
+  alignItems: "flex-start",
+  gap: "22px"
+};
+
+const mistakeIconStyle = {
+  width: "42px",
+  height: "42px",
+  borderRadius: "50%",
+  backgroundColor: "#fde8e8",
+  color: "#d94a4a",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexShrink: 0,
+  marginTop: "4px"
+};
+
+const mistakeTitleStyle = {
+  fontSize: "28px",
+  fontWeight: "700",
+  marginBottom: "18px"
+};
+
+const descriptionStyle = {
+  fontSize: "19px",
+  color: "#5f534c",
+  lineHeight: "1.7",
+  marginBottom: "22px"
+};
+
+const tipBoxStyle = {
+  backgroundColor: "#f4fbf7",
+  border: "1px solid #bfe2d0",
+  borderRadius: "14px",
+  padding: "18px 20px"
+};
+
+const tipTextStyle = {
+  fontSize: "18px",
+  lineHeight: "1.6",
+  margin: 0
+};
+
+function XIcon() {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9 9l6 6" />
+      <path d="M15 9l-6 6" />
+    </svg>
   );
 }
 

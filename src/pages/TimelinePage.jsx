@@ -1,149 +1,203 @@
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function TimelinePage() {
-  const oneMonthBefore = [
-    "Create a moving budget and start tracking expenses",
-    "Research and book a moving company or rent a truck",
-    "Start decluttering and donate or sell items you do not need",
-    "Begin collecting packing supplies such as boxes, tape, and bubble wrap",
-    "Notify your landlord if you are ending a lease",
-    "Start a change-of-address list",
-    "Research utility providers at your new address",
-    "Take inventory of valuable items"
-  ];
-
-  const twoWeeksBefore = [
-    "Begin packing non-essential items",
-    "Label all boxes by room and contents",
-    "Confirm moving company or truck reservation",
-    "Set up mail forwarding",
-    "Transfer or set up utilities",
-    "Update your address with banks and subscriptions",
-    "Arrange pet or child care for moving day",
-    "Start using up perishable food items"
-  ];
-
-  const oneWeekBefore = [
-    "Pack an essentials box",
-    "Finish packing remaining items",
-    "Disassemble large furniture if needed",
-    "Clean out your current fridge and freezer",
-    "Confirm the move-in time and key pickup",
-    "Charge devices and save directions",
-    "Take final meter readings if needed",
-    "Say goodbye to neighbors"
-  ];
-
-  const movingDay = [
-    "Do a final walkthrough of your old place",
-    "Supervise movers or load the truck carefully",
-    "Keep important documents and valuables with you",
-    "Take photos of your old place",
-    "Lock up and return keys if needed",
-    "Check that utilities are on at the new place",
-    "Direct movers to the correct rooms",
-    "Unpack your essentials box first"
-  ];
-
-  const afterMoveIn = [
-    "Unpack room by room",
-    "Set up your bed first",
-    "Deep clean before fully unpacking",
-    "Test smoke detectors and replace batteries if needed",
-    "Update your driver's license and registration",
-    "Introduce yourself to neighbors",
-    "Find the nearest grocery store and pharmacy",
-    "Take photos of any pre-existing damage"
+  const phases = [
+    {
+      number: "1",
+      title: "1 Month Before Move",
+      color: "#d97745",
+      tasks: [
+        "Create a moving budget",
+        "Book movers or reserve a truck",
+        "Start decluttering",
+        "Collect packing supplies",
+        "Notify your landlord if needed",
+        "Research utilities"
+      ]
+    },
+    {
+      number: "2",
+      title: "2 Weeks Before Move",
+      color: "#6aa58b",
+      tasks: [
+        "Pack non-essential items",
+        "Label boxes by room",
+        "Confirm moving plans",
+        "Set up mail forwarding",
+        "Schedule utilities",
+        "Update important accounts"
+      ]
+    },
+    {
+      number: "3",
+      title: "1 Week Before Move",
+      color: "#e5a84b",
+      tasks: [
+        "Pack an essentials box",
+        "Finish most packing",
+        "Clean out the fridge",
+        "Confirm key pickup",
+        "Review moving day details"
+      ]
+    },
+    {
+      number: "4",
+      title: "Moving Day",
+      color: "#e8882e",
+      tasks: [
+        "Do a final walkthrough",
+        "Keep documents with you",
+        "Direct boxes to each room",
+        "Check that utilities work",
+        "Return old keys",
+        "Unpack essentials first"
+      ]
+    },
+    {
+      number: "5",
+      title: "After Move-In",
+      color: "#4ca66a",
+      tasks: [
+        "Set up your bed",
+        "Unpack room by room",
+        "Test smoke detectors",
+        "Take photos of damage",
+        "Update your address"
+      ]
+    }
   ];
 
   return (
     <Container className="py-5">
       <div className="text-center mb-5">
-        <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
-          Moving Timeline
-        </h1>
+        <h1 className="page-title">Moving Timeline</h1>
 
-        <p
-          style={{
-            fontSize: "22px",
-            color: "#666",
-            maxWidth: "850px",
-            margin: "0 auto",
-            lineHeight: "1.6"
-          }}
-        >
-          A practical week-by-week plan for everything you need to do before,
+        <p className="page-subtitle">
+          A week-by-week plan for everything you need to do before,
           during, and after your move.
         </p>
       </div>
 
-      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
-        <Card.Body style={{ padding: "30px" }}>
-          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>1 Month Before Move</h2>
-          <ul style={listStyle}>
-            {oneMonthBefore.map((item) => (
-              <li key={item} style={listItemStyle}>{item}</li>
-            ))}
-          </ul>
-        </Card.Body>
-      </Card>
+      <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+        {phases.map((phase) => (
+          <Card
+            key={phase.title}
+            className="mb-4"
+            style={{
+              borderRadius: "18px",
+              border: "1px solid #ddd",
+              borderLeft: `6px solid ${phase.color}`,
+              overflow: "hidden"
+            }}
+          >
+            <Card.Body style={{ padding: 0 }}>
+              <div style={phaseHeaderStyle}>
+                <div
+                  style={{
+                    ...numberCircleStyle,
+                    backgroundColor: `${phase.color}22`,
+                    color: phase.color
+                  }}
+                >
+                  {phase.number}
+                </div>
 
-      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
-        <Card.Body style={{ padding: "30px" }}>
-          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>2 Weeks Before Move</h2>
-          <ul style={listStyle}>
-            {twoWeeksBefore.map((item) => (
-              <li key={item} style={listItemStyle}>{item}</li>
-            ))}
-          </ul>
-        </Card.Body>
-      </Card>
+                <h2 style={phaseTitleStyle}>{phase.title}</h2>
+              </div>
 
-      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
-        <Card.Body style={{ padding: "30px" }}>
-          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>1 Week Before Move</h2>
-          <ul style={listStyle}>
-            {oneWeekBefore.map((item) => (
-              <li key={item} style={listItemStyle}>{item}</li>
-            ))}
-          </ul>
-        </Card.Body>
-      </Card>
-
-      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
-        <Card.Body style={{ padding: "30px" }}>
-          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>Moving Day</h2>
-          <ul style={listStyle}>
-            {movingDay.map((item) => (
-              <li key={item} style={listItemStyle}>{item}</li>
-            ))}
-          </ul>
-        </Card.Body>
-      </Card>
-
-      <Card className="mb-4" style={{ borderRadius: "16px", border: "1px solid #ddd" }}>
-        <Card.Body style={{ padding: "30px" }}>
-          <h2 style={{ fontSize: "32px", marginBottom: "20px" }}>After Move-In</h2>
-          <ul style={listStyle}>
-            {afterMoveIn.map((item) => (
-              <li key={item} style={listItemStyle}>{item}</li>
-            ))}
-          </ul>
-        </Card.Body>
-      </Card>
+              <div style={taskListStyle}>
+                {phase.tasks.map((task) => (
+                  <div key={task} style={taskItemStyle}>
+                    <span
+                      style={{
+                        ...checkCircleStyle,
+                        borderColor: phase.color,
+                        color: phase.color
+                      }}
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
+                    <span>{task}</span>
+                  </div>
+                ))}
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+      <div className="text-center mt-5">
+        <Button
+          as={Link}
+          to="/planner"
+          onClick={() => window.scrollTo(0, 0)}
+          style={{
+            backgroundColor: "#d97745",
+            border: "none",
+            borderRadius: "12px",
+            padding: "14px 24px",
+            fontSize: "18px",
+            fontWeight: "600"
+          }}
+        >
+          Go to Planner
+        </Button>
+      </div>
     </Container>
   );
 }
 
-const listStyle = {
+const phaseHeaderStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: "18px",
+  padding: "24px 28px",
+  borderBottom: "1px solid #ddd"
+};
+
+const numberCircleStyle = {
+  width: "48px",
+  height: "48px",
+  borderRadius: "50%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   fontSize: "20px",
-  lineHeight: "1.9",
-  paddingLeft: "25px",
+  fontWeight: "700"
+};
+
+const phaseTitleStyle = {
+  fontSize: "28px",
+  fontWeight: "700",
   margin: 0
 };
 
-const listItemStyle = {
-  marginBottom: "8px"
+const taskListStyle = {
+  padding: "28px",
+  display: "grid",
+  gap: "18px"
+};
+
+const taskItemStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: "14px",
+  fontSize: "18px",
+  color: "#2b2b2b"
+};
+
+const checkCircleStyle = {
+  width: "24px",
+  height: "24px",
+  borderRadius: "50%",
+  border: "2px solid",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "14px",
+  fontWeight: "700",
+  flexShrink: 0
 };
 
 export default TimelinePage;

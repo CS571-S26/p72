@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
 import PlannerForm from "../components/PlannerForm";
 import PlannerList from "../components/PlannerList";
 import PlannerSummary from "../components/PlannerSummary";
@@ -19,6 +19,7 @@ function PlannerPage() {
 
   const [roomFilter, setRoomFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("movingPlannerItems", JSON.stringify(items));
@@ -26,6 +27,7 @@ function PlannerPage() {
 
   function addItem(newItem) {
     setItems([...items, newItem]);
+    setShowAddModal(false);
   }
 
   function toggleComplete(id) {
@@ -43,6 +45,7 @@ function PlannerPage() {
     const updatedItems = items.filter((item) => item.id !== id);
     setItems(updatedItems);
   }
+
   function resetPlanner() {
     setItems(starterItems);
   }
@@ -58,28 +61,32 @@ function PlannerPage() {
   });
 
   const completedCount = items.filter((item) => item.completed).length;
+  const completedBudget = items
+    .filter((item) => item.completed)
+    .reduce((total, item) => total + item.cost, 0);
+
   const totalBudget = items.reduce((total, item) => total + item.cost, 0);
+  const remainingBudget = totalBudget - completedBudget;
+
   const progress =
     items.length === 0 ? 0 : Math.round((completedCount / items.length) * 100);
 
   return (
     <Container className="py-5">
-      <div className="text-center mb-5">
-        <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
-          Moving Planner
+      <div style={{ marginBottom: "45px" }}>
+        <h1 className="page-title" style={{ marginBottom: "15px" }}>
+          My Moving Plan
         </h1>
 
         <p
           style={{
             fontSize: "22px",
-            color: "#666",
-            maxWidth: "750px",
-            margin: "0 auto",
+            color: "#6b5f57",
+            maxWidth: "850px",
             lineHeight: "1.6"
           }}
         >
-          Create your checklist, track your budget, and stay organized as you
-          prepare for your move.
+          Track your essentials, stay on budget, and get settled faster.
         </p>
       </div>
 
@@ -87,6 +94,8 @@ function PlannerPage() {
         items={items}
         completedCount={completedCount}
         totalBudget={totalBudget}
+        completedBudget={completedBudget}
+        remainingBudget={remainingBudget}
         progress={progress}
         onResetPlanner={resetPlanner}
       />
@@ -96,15 +105,31 @@ function PlannerPage() {
         setRoomFilter={setRoomFilter}
         statusFilter={statusFilter}
         setStatusFilter={setStatusFilter}
+        onOpenAddModal={() => setShowAddModal(true)}
       />
-
-      <PlannerForm onAddItem={addItem} />
 
       <PlannerList
         items={filteredItems}
         onToggleComplete={toggleComplete}
         onDeleteItem={deleteItem}
       />
+
+      <Modal
+        show={showAddModal}
+        onHide={() => setShowAddModal(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Item</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <PlannerForm
+            onAddItem={addItem}
+            onCancel={() => setShowAddModal(false)}
+          />
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 }
